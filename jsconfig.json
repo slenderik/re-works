@@ -2,8 +2,9 @@
   "compilerOptions": {
     "paths": {
       "@/*": ["./src/*"],
-      "@app/*": ["/app/*"],
-      "@ui/*": ["/app/ui*"],
+      "@app/*": ["./app/*"],
+      "@ui/*": ["./app/ui/*"],
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
