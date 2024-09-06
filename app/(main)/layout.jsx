@@ -1,8 +1,6 @@
-import "/app/globals.css";
-import { Inter } from "next/font/google";
-// import "@/app/reset.css";
-
-export const inter = Inter({ subsets: ["latin"] });
+import "@app/globals.css";
+import "@app/reset.css";
+import { inter } from '@ui/fonts';
 
 export const metadata = {
   title: "ReWorks",
@@ -13,9 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
-        <main>{children}</main>
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
