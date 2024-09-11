@@ -1,7 +1,8 @@
 import '@ui/global.css';
-import { inter } from '@ui/fonts';
-import Header from '@components/global-header';
-import Footer from '@components/global-footer';
+import { vk_sans_display } from '@app/fonts';
+import Header from '@components/header';
+import Footer from '@components/footer';
+
 
 export const metadata = {
   title: {
@@ -16,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <body className={inter.className}>
+      <body className={vk_sans_display.className} >
         <Header />
         {children}
         <Footer />
