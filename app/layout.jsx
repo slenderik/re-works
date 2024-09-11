@@ -1,8 +1,7 @@
-import '@app/styles/globals.css';
-import '@app/styles/reset.css';
+import '@ui/global.css';
 import { inter } from '@ui/fonts';
-import { GlobalHeader } from '@ui/global-header';
-import { GlobalFooter } from '@ui/global-footer';
+import Header from '@components/global-header';
+import Footer from '@components/global-footer';
 
 export const metadata = {
   title: {
@@ -18,9 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <body className={inter.className}>
-        <GlobalHeader />
+        <Header />
         {children}
-        <GlobalFooter />
+        <Footer />
       </body>
     </html>
   );
