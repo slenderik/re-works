@@ -1,5 +1,5 @@
 export const metadata  = {
-  title: 'Резюме',
+  title: 'Вакансии',
 };
 
 export default function Home() {
