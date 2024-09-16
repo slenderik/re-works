@@ -5,6 +5,7 @@
       "@app/*": ["./app/*"],
       "@ui/*": ["./app/ui/*"],
       "@components/*": ["./app/ui/components/*"],
+      "@lib/*": ["./app/lib/*"],
     }
   },
   "exclude": ["node_modules"]
