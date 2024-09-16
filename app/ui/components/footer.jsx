@@ -3,7 +3,7 @@ import NavLinks from '@components/nav-links';
 
 export default function Footer() {
   return (
-    <footer className="flex w-full h-16 px-4 justify-between items-center bg-white md:justify-between lg:justify-evenly bottom-0">
+    <footer className="flex w-full h-16 px-4 justify-between items-center bg-white md:justify-between lg:justify-evenly shadow-md">
       
       <div>
         <div className="flex flex-row items-center gap-1 h-9">
