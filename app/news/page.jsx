@@ -22,7 +22,7 @@ export default async function Page({searchParams}) {
       <main className="flex flex-col bg-background rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg">
         <div className=''>
           <h1 className="w-full font-bold text-2xl">Новости</h1>
-          <Search placeholder="Anime" />
+          <Search placeholder="Ищите по заголовоку, словам или дате" />
         </div>
 
         <hr className="border-gray-200 py-4"/>
