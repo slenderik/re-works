@@ -9,12 +9,13 @@ export const metadata  = {
   title: 'Новости',
 };
 
-export default async function Page(searchParams) {
+export default async function Page({searchParams}) {
   const query = searchParams?.query || '';
   const currentPage = Number(searchParams?.page) || 1;
 
   const totalPages = await fetchNewsPages(query);
   const news = await fetchFilteredNews(query, currentPage);
+  console.log(news.createDate);
 
   return (
     <div className="flex items-start justify-center py-5 min-h-[calc(100dvh-8rem)]">
@@ -32,7 +33,7 @@ export default async function Page(searchParams) {
             title={news.title}
             content={news.content}
             picture={news.picture}
-            date={news.date}
+            date={news.createDate}
           />
           ))}
       </main>
