@@ -8,7 +8,7 @@ export default function NewsCard({title, content, picture, date, alt="anime"}) {
   const formattedDate = date.toLocaleDateString('ru-RU', options);
 
   return (
-    <div className="w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden max-h-52 hover:scale-105 hover:transition">
+    <div className="w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
       <div className="md:flex">
 
         <div className="md:shrink-0">
@@ -23,7 +23,7 @@ export default function NewsCard({title, content, picture, date, alt="anime"}) {
           : null}
         </div>
 
-        <div className="p-8">
+        <div className="p-5">
           <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
             {formattedDate}
           </div>
