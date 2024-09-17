@@ -17,7 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <body className={vk_sans_display.className} >
+      <body className={`$vk_sans_display.className selection:bg-primary-100 selection:text-black`} >
         <Header />
         {children}
         <Footer />
