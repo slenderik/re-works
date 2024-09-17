@@ -1,39 +1,41 @@
+import { fetchNewsPages, fetchFilteredNews } from '@lib/data';
+import Search from '@components/search';
 import NewsCard from '@ui/news/news-card';
-import { fetchNews } from '@lib/data';
+
+import { Suspense } from 'react'; //TODO THIS
 
 
 export const metadata  = {
   title: 'Новости',
 };
 
-export default async function Home() {
-  const news = await fetchNews();
+export default async function Page(searchParams) {
+  const query = searchParams?.query || '';
+  const currentPage = Number(searchParams?.page) || 1;
+
+  const totalPages = await fetchNewsPages(query);
+  const news = await fetchFilteredNews(query, currentPage);
 
   return (
-    <div className="flex gap-7 items-start justify-center py-5 min-h-[calc(100dvh-8rem)]">
+    <div className="flex items-start justify-center py-5 min-h-[calc(100dvh-8rem)]">
+      <main className="flex flex-col bg-background rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg">
+        <div className=''>
+          <h1 className="w-full font-bold text-2xl">Новости</h1>
+          <Search placeholder="Anime" />
+        </div>
 
-    <main className="flex flex-col bg-background rounded-md px-5 py-6 gap-3 w-1/2 shadow-lg">
-      <h1 className="w-full font-bold text-2xl">Новости</h1>
-      <form>
-        <input 
-          type="search" 
-          accessKey="s" 
-          placeholder="" 
-          className="input-search"
-        />
-        <input 
-          type="submit" 
-          accessKey="f" 
-          value="Найти" 
-          className="input-submit"
-        />
-      </form>
-      <hr className="border-gray-300 py-4"/>
-      
-      {[...Array(10)].map((_, i) => (
-        <NewsCard key={i} />
-      ))}
-    </main>
-  </div>
+        <hr className="border-gray-200 py-4"/>
+        
+        {news.map((news) => (
+          <NewsCard
+            key={news._id}
+            title={news.title}
+            content={news.content}
+            picture={news.picture}
+            date={news.date}
+          />
+          ))}
+      </main>
+    </div>
   );
 }
