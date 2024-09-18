@@ -2,19 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .min-page-h {
+    min-height: calc(100dvh - 8rem);
+  }
+}
+
 :root {
   --primary-rgb: #008163;
   --primary-dark: #004235;
   --dark: #181C32;
 
   --background: #F5F8FA;
-}
-
-/* TODO: LATER */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #F5F8FA;
-  }
 }
 
 *, *::before, *::after {
