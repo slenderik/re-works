@@ -2,7 +2,7 @@ import Link from 'next/link'
  
 export default function NotFound() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[calc(100dvh-8rem)] px-3">
+    <div className="flex flex-col items-center justify-center min-page-h px-3">
       <h2 className="text-6xl font-bold">
         <span className='text-primary-500'>404 </span>
         Not Work
