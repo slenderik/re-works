@@ -9,7 +9,6 @@ export function EmptyNewsPage ({text="Новости не найдены"}) {
   );
 }
 
-
 export function EmptySearchPage ({textmd="Ничего не найдено"}) {
   return (
     <div className="flex flex-col justify-center items-center min-h-[calc(100dvh-23rem)] text-gray-500 font-medium text-lg">

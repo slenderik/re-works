@@ -1,5 +1,5 @@
 import Search from '@ui/components/search';
-import ResumeCard from '@ui/result/resume-card';
+import { ResumeCard } from '@/ui/components/card';
 
 
 export default function Layout() {

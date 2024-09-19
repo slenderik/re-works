@@ -32,6 +32,6 @@ export const generatePagination = (currentPage, totalPages) => {
 };
   
 
-export function escapeRegExp(string) {
+export function sanitizeQuery(string) {
   return string.replace(/([.*+?^${}()|[\]\\])/g, '\\$1');
 }

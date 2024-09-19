@@ -1,11 +1,8 @@
-import { fetchNewsCountPages, fetchFilteredNews } from "@lib/data";
-import Search from "@components/search";
-import NewsCard from "@ui/news/news-card";
-import Pagination from "@components/pagination";
-import { EmptySearchPage } from "@components/empty-page";
-
-import { Suspense } from "react"; //TODO THIS
 import Link from "next/link";
+import Search from "@components/search";
+import PageFeed from "@components/page-feed";
+import Pagination from "@components/pagination";
+import { fetchFilteredNews, ITEMS_PER_PAGE } from "@lib/data";
 
 
 export const metadata  = {
@@ -13,11 +10,11 @@ export const metadata  = {
 };
 
 export default async function Page({searchParams}) {
-  const query = searchParams?.query || "";
-  const currentPage = Number(searchParams?.page) || 1;
+  const currentPage = Number(searchParams.page) || 1;
 
-  const totalPages = await fetchNewsCountPages(query);
-  const news = await fetchFilteredNews(query, currentPage);
+  const news = await fetchFilteredNews(searchParams.query, currentPage);
+  console.log
+  const totalPages = news.length / ITEMS_PER_PAGE;
 
   return (
     <div className="flex items-start justify-center py-5 min-page-h">
@@ -32,20 +29,7 @@ export default async function Page({searchParams}) {
 
         <hr className="border-gray-200"/>
 
-        {totalPages == 0 ? (
-          <EmptySearchPage />
-        ) : (
-          news.map((newsItem) => (
-            <NewsCard
-              id={newsItem._id}
-              key={newsItem._id}
-              title={newsItem.title}
-              content={newsItem.content}
-              picture={newsItem.picture}
-              date={newsItem.createDate}
-            />
-          ))
-        )}
+        <PageFeed itemsArray={news} />
 
         <div className="mt-5 flex w-full justify-center">
           <Pagination totalPages={totalPages} />

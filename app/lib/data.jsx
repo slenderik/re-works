@@ -1,13 +1,13 @@
 import { connectToDatabase } from '@lib/database';
-import { escapeRegExp } from '@lib/utils';
+import { sanitizeQuery } from '@lib/utils';
 import { ObjectId } from "mongodb";
 
 
 
-const ITEMS_PER_PAGE = 6;
+export const ITEMS_PER_PAGE = 6;
 
 export async function fetchNewsCountPages(query) {
-  const safeQuery = escapeRegExp(query);
+  const safeQuery = sanitizeQuery(query);
   const regexQuery = new RegExp(safeQuery, 'i');
 
   try {
@@ -30,13 +30,13 @@ export async function fetchNewsCountPages(query) {
   }
 }
 
-export async function fetchFilteredNews(query, currentPage) {
+export async function fetchFilteredNews(query = "", offset = 1) {
   let client = await connectToDatabase(); 
   
-  const offset = (currentPage - 1) * ITEMS_PER_PAGE;
+  offset = (offset - 1) * ITEMS_PER_PAGE;
 
-   // Экранируем обратный слеш и другие специальные символы
-  const safeQuery = escapeRegExp(query);
+  // Экранируем обратный слеш и другие специальные символы
+  const safeQuery = sanitizeQuery(query);
 
   const regexQuery = new RegExp(safeQuery, 'i');
 
@@ -52,8 +52,8 @@ export async function fetchFilteredNews(query, currentPage) {
       .skip(offset)
       .limit(ITEMS_PER_PAGE)
       .toArray();
-
     return news;
+
   } catch (error) {
     console.error('Database Error:', error);
     throw new Error('Failed to fetch invoices.');
@@ -70,10 +70,6 @@ export async function fetchNewsById(id) {
     return null;
   }
 
-  const objectId = new ObjectId(id);
-  console.log(`Fetching news by id: ${id}`);
-  console.log(`Fetching news by ObjectId: ${objectId}`);
-  
   try {
     const newsItem = await client.collection('news')
       .findOne({ _id: new ObjectId(id) });
