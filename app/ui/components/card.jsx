@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
   
-export default function NewsCard({id, title, content, picture, date, alt="anime"}) {
+export function NewsCard({id, title, content, picture, date, alt="anime"}) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   // Используем русскую локаль и настройки
   const formattedDate = date.toLocaleDateString('ru-RU', options);
@@ -37,6 +37,23 @@ export default function NewsCard({id, title, content, picture, date, alt="anime"
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+
+export function ResumeCard() {
+  return (
+    <div className="flex flex-col items-center w-full р-96 bg-white">
+      <Image
+        src="/reworks.svg"
+        width={96}
+        height={96}
+        alt="Resume"
+        className="rounded-full w-24 h-24"
+      />
+      <h3 className="text-xl mt-4">John Doe</h3>
+      <p className="text-gray-600">Frontend Developer</p>
     </div>
   );
 }
