@@ -1,4 +1,7 @@
+import Search from '@ui/components/search';
 import ResumeCard from '@ui/result/resume-card';
+
+
 export default function Layout() {
   return (
     <>
@@ -6,20 +9,7 @@ export default function Layout() {
 
         <main className="flex flex-col bg-background rounded-md px-5 py-6 gap-3 w-1/2 shadow-lg">
           <h1 className="w-full">Поиск сотрудников</h1>
-          <form>
-            <input 
-              type="search" 
-              accessKey="s" 
-              placeholder="" 
-              className="input-search"
-            />
-            <input 
-              type="submit" 
-              accessKey="f" 
-              value="Найти" 
-              className="input-submit"
-            />
-          </form>
+         <Search placeholder="Ищите по названию профессии"/>
           <hr className="border-gray-300 py-4"/>
           
           {[...Array(10)].map((_, i) => (
