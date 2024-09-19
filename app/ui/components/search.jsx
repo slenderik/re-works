@@ -21,7 +21,7 @@ export default function Search({placeholder}) {
   }, 300);
 
   return (
-    <div className="relative flex flex-1 flex-shrink-0">
+    <div className={`relative flex`}>
       <label htmlFor="search" className="sr-only">
         Найти
       </label>
@@ -29,7 +29,7 @@ export default function Search({placeholder}) {
         id="search"
         type="search"
         accessKey="s"
-        className="peer block w-full rounded-md border border-gray-200 py-[9px] pl-10 pr-3 text-sm outline-2 placeholder:text-gray-500"
+        className="w-full rounded-md border border-gray-200 py-[9px] pl-10 pr-3 text-sm outline-2 placeholder:text-gray-500"
         placeholder={placeholder}
         onChange={(e) => handleSearch(e.target.value)}
         defaultValue={searchParams.get('query')?.toString()}

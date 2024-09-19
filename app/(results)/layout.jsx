@@ -5,7 +5,7 @@ export default function Layout() {
       <div className="flex gap-7 items-start justify-center py-5">
 
         <main className="flex flex-col bg-background rounded-md px-5 py-6 gap-3 w-1/2 shadow-lg">
-          <h1 className="w-full font-bold text-2xl">Резюме * Поиск сотрудников</h1>
+          <h1 className="w-full">Поиск сотрудников</h1>
           <form>
             <input 
               type="search" 

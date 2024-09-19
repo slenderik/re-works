@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 
   
-export default function NewsCard({title, content, picture, date, alt="anime"}) {
+export default function NewsCard({id, title, content, picture, date, alt="anime"}) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   // Используем русскую локаль и настройки
   const formattedDate = date.toLocaleDateString('ru-RU', options);
@@ -18,7 +18,7 @@ export default function NewsCard({title, content, picture, date, alt="anime"}) {
             width={400}
             height={250}
             alt={alt}
-            className="h-48 w-full object-cover md:max-h-52 md:w-48"
+            className="h-48 w-full object-cover md:max-h-52 md:w-48" //className="h-48 h-max-48 w-48 object-cover md:h-min"
           />
           : null}
         </div>
@@ -28,7 +28,7 @@ export default function NewsCard({title, content, picture, date, alt="anime"}) {
             {formattedDate}
           </div>
           <Link
-            href="#"
+            href={`/news/${id}`}
             className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
             {title}
           </Link>
