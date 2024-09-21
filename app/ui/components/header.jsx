@@ -14,7 +14,7 @@ export default function Header() {
   };
 
   return (
-    <header className="flex sticky top-0 shadow-md w-full h-16 px-4 justify-between items-center bg-white md:justify-between lg:justify-evenly">
+    <header className="flex sticky z-30 top-0 shadow-md w-full h-16 px-4 justify-between items-center bg-white md:justify-between lg:justify-evenly">
 
       {/* <div className="flex flex-row h-16 items-center w-3/6"> */}
       <Link
