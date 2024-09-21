@@ -7,7 +7,8 @@ export default function ReworkLogo() {
         src="/reworks.svg"
         alt="ReWorks"
         width={35}
-        height={35}/>
+        height={35}
+        priority={true}/>
       <p className="text-[27px] font-bold text-black">
         <span className='text-primary-500'>Re</span>Works
       </p>
