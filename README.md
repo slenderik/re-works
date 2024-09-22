@@ -1,13 +1,16 @@
+## Advices for future improvements
+- [Learn Next.js](https://nextjs.org/learn) to understand this project.
+
+
 ## Technology stack
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- DB MongoDB
+- Framefork [Next.js](https://nextjs.org/docs)
+- DB [MongoDB](https://www.mongodb.com/)
 - Auth [AuthJs](https://authjs.dev/reference/nextjs)
 
 
 ## Project knowledge
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
 This project was initialized from a [Next.js Starter](https://nextjs.org/), and contains the following changes:
 

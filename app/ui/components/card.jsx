@@ -123,3 +123,53 @@ export function ResumeCard({
     </div>
   );
 }
+
+
+export function VacancyCard({
+  id,
+  vacancy,
+  salary,
+  employment,
+  profile,
+  address,
+  date,
+}) {
+  const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  const formattedSalary = new Intl.NumberFormat('ru-RU').format(salary).replace(/\s/g, '.');
+  return (
+    <div className="relative w-full mx-auto p-5 bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
+
+      {/* Header */}
+      <div className='text-xl font-semibold flex gap-2 py-2 items-baseline'>
+        <Link className="after:content-[''] after:absolute after:inset-0 hover:underline" href={`/vacancy/${id}`}>
+          <p>
+            {vacancy}
+          </p>
+        </Link>
+        <p className='text-primary-100 text-lg'>
+          {formattedSalary}
+        </p>
+      </div>
+
+      {/* Info */}
+      <div className='flex flex-row'>
+        <div className='relative text-gray-400 flex flex-col gap-1'>
+          <p>Занятость</p>
+          <p>Адрес</p>
+          <p>{formattedDate}</p>
+        </div>
+
+        <div className='relative text-black flex flex-col gap-1'>
+          <p>{employment}</p>
+          <p>{address}</p>
+          <p className="text-gray-400">{profile}</p>
+        </div>
+      </div>
+    </div>
+  );
+}

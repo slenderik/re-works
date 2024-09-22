@@ -324,7 +324,7 @@ export async function fetchFilteredVacancies(query = "", offset = 1) {
       );
     }
 
-    const resumes = await db.collection("resume")
+    const resumes = await db.collection("vacancy")
       .find({ $or: searchConditions })
       .skip(offset)
       .limit(ITEMS_PER_PAGE)
@@ -344,28 +344,23 @@ export async function fetchFilteredVacancies(query = "", offset = 1) {
 export async function fetchVacancyById(id) {
 
   try {
-    const resumeItem = await db.collection("resume")
+    const vacancyItem = await db.collection("vacancy")
       .findOne({ _id: id });
     
-    if (!resumeItem) return null;
+    if (!vacancyItem) return null;
+    console.log(vacancyItem);
 
     return {
-      _id: resumeItem._id.toString(),
-      date: resumeItem.createdAt,
-      picture: resumeItem.image1 || null,
-      salary: resumeItem.salary,
-
-      sex: resumeItem.pol,
-      age: resumeItem.age,
-      about: resumeItem.aboutMe,
-      vacancy: resumeItem.vacancy,
-      schedule: resumeItem.schedule,
-      education: resumeItem.education,
-      experience: resumeItem.experience,
-      employment: resumeItem.employment,
-      achievements: resumeItem.achievements,
-      familyStatus: resumeItem.familyStatus,
-      educationSpecial: resumeItem.educationSpecial,
+      id: vacancyItem._id.toString(),
+      name: vacancyItem.companyName,
+      profile: vacancyItem.companyProfile,
+      address: vacancyItem.actualAddress,
+      vacancy: vacancyItem.vacancy,
+      salary: vacancyItem.salary,
+      requirement: vacancyItem.fromYou,
+      description: vacancyItem.descWork,
+      conditions: vacancyItem.fromUS,
+      date: vacancyItem.createdAt,
     };
 
   } catch (error) {
@@ -380,7 +375,7 @@ export async function fetchVacancies(query = "") {
   const filter = query ? { title: { $regex: query, $options: "i" } } : {};
 
   // Получаем все новости с фильтрацией, если есть
-  const news = await db.collection("resume").find(filter).toArray();
+  const news = await db.collection("vacancy").find(filter).toArray();
 
   // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
   return news.map((newsItem) => ({

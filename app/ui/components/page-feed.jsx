@@ -1,9 +1,10 @@
 import {
   NewsCard,
   ResumeCard,
+  VacancyCard,
 } from '@/ui/components/card';
 import { EmptySearchPage } from '@/ui/components/empty-page';
-import { fetchFilteredNews,  fetchFilteredResumes } from "@lib/data";
+import { fetchFilteredNews,  fetchFilteredResumes, fetchFilteredVacancies } from "@lib/data";
 
 export async function NewsFeed({query, currentPage}) {
   const news = await fetchFilteredNews(query, currentPage);
@@ -51,6 +52,32 @@ export async function ResumeFeed({query, currentPage}) {
             employment={resumeItem.employment}
             experience={resumeItem.experience}
             avatar={resumeItem.image1}
+          />
+        ))
+      )}
+    </>
+  );
+}
+
+
+export async function VacancyFeed({query, currentPage}) {  
+  const resumes = await fetchFilteredVacancies(query, currentPage);
+
+  return (
+    <>
+      {resumes.length === 0? (
+        <EmptySearchPage />
+      ) : (
+        resumes.map((resumeItem) => (
+          <VacancyCard
+            key={resumeItem._id}
+            id={resumeItem._id}
+            vacancy={resumeItem.vacancy}
+            salary={resumeItem.salary}
+            employment={resumeItem.employment}
+            profile={resumeItem.companyProfile}
+            address={resumeItem.actualAddress}
+            date={resumeItem.createdAt}
           />
         ))
       )}

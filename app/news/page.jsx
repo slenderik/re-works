@@ -21,10 +21,12 @@ export default async function NewsPage({searchParams}) {
       <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg min-h-[calc(100dvh-23rem)]">
 
         <div className="w-full flex flex-row justify-between">
-          <Link href="news/">
-            <h1>Новости</h1>
-          </Link>
-          <p className="text-gray-400 font-semibold">{newsCount}</p> 
+          <div className="flex flex-row gap-1 items-end">
+            <Link href="news/">
+              <h1>Новости</h1>
+            </Link>
+            <p className="text-gray-400 font-semibold">{newsCount}</p> 
+          </div>
           <Search placeholder="Ищите по заголовоку словам или дате" />
         </div>
 
