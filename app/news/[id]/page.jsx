@@ -1,15 +1,15 @@
 import Image from "next/image";
-import { EmptyNewsPage } from "@components/empty-page";
-import { fetchNewsPages, fetchNewsById } from "@lib/data";
+import { EmptyPage } from "@components/empty-page";
+import { fetchNews, fetchNewsById } from "@lib/data";
 
 export default async function NewsArticle({ params }) {
-  const news = await fetchNewsById(params.id);
+  const newItems = await fetchNewsById(params.id);
 
-  if (!news) {
-    return <EmptyNewsPage text="Новость не найдена" />;
+  if (!newItems) {
+    return <EmptyPage text="Новость не найдена" />;
   }
 
-  const formattedDate = new Date(news.createDate).toLocaleDateString('ru-RU', {
+  const formattedDate = new Date(newItems.createDate).toLocaleDateString('ru-RU', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
@@ -17,30 +17,30 @@ export default async function NewsArticle({ params }) {
 
   return (
     <div className="flex items-start justify-center py-5 min-page-h">
-      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg">
+      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg whitespace-pre-wrap ">
         
         <div className="flex justify-center w-full h-60 bg-background">
-          {news.picture ?
+          {newItems.picture ?
             <Image
-              src={news.picture}
+              src={newItems.picture}
               width={400}
               height={250}
-              alt={news.alt}
+              alt={newItems.alt}
               className="h-60 w-min"
             />
           : null}
         </div>
 
-        <h1>{news.title}</h1>
-        <p>{news.content}</p>
-        <p>Дата публикации: {formattedDate}</p>
+        <h1>{newItems.title}</h1>
+        <p>{newItems.content}</p>
+        <p className="text-gray-400">{formattedDate}</p>
       </main>
     </div>
   );
 }
 
 export async function generateStaticParams() {
-  const news = await fetchNewsPages();
+  const news = await fetchNews();
   return news.map((newsItem) => ({
     id: newsItem._id.toString(),
   }));

@@ -1,18 +1,6 @@
 import { fakerRU as faker } from '@faker-js/faker';
-import { connectToDatabase } from'@lib/database';
+import { client } from'@lib/db';
 
-
-function createRandomUser() {
-  return {
-    userId: faker.string.uuid(),
-    username: faker.internet.userName(),
-    email: faker.internet.email(),
-    avatar: faker.image.avatar(),
-    password: faker.internet.password(),
-    birthdate: faker.date.birthdate(),
-    registeredAt: faker.date.past(),
-  };
-}
 
 function createRandomNews() {
   return {
@@ -46,7 +34,7 @@ async function seedNews(db) {
 
 
 export async function GET() {
-  let db = await connectToDatabase();
+  let db = clien.db("news");
 
   try {
     await seedNews(db);
