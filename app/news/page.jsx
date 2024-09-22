@@ -2,7 +2,7 @@ import Link from "next/link";
 import Search from "@components/search";
 import Pagination from "@components/pagination";
 import { NewsFeed } from "@components/page-feed"
-import { fetchNewsCountPages } from "@lib/data";;
+import { ITEMS_PER_PAGE, fetchNewsCount } from "@lib/data";;
 
 export const metadata  = {
   title: "Новости",
@@ -13,7 +13,8 @@ export default async function NewsPage({searchParams}) {
   const query = searchParams.query || "";
   const currentPage = Number(searchParams.page) || 1;
 
-  const totalPages = await fetchNewsCountPages(query);
+  const newsCount = await fetchNewsCount(query);
+  const totalPages = Math.ceil(newsCount / ITEMS_PER_PAGE);
 
   return (
     <div className="flex items-start justify-center p-5 min-page-h">
@@ -22,8 +23,9 @@ export default async function NewsPage({searchParams}) {
         <div className="w-full flex flex-row justify-between">
           <Link href="news/">
             <h1>Новости</h1>
-          </Link>  
-            <Search placeholder="Ищите по заголовоку словам или дате" />
+          </Link>
+          <p className="text-gray-400 font-semibold">{newsCount}</p> 
+          <Search placeholder="Ищите по заголовоку словам или дате" />
         </div>
 
         <hr className="border-gray-200"/>

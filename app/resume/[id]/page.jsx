@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { EmptyPage } from "@components/empty-page";
+import { UserIcon } from "@heroicons/react/24/outline";
 import { fetchResumes, fetchResumeById } from "@lib/data";
+
 
 export default async function ResumeArticle({ params }) {
   const resumeItem = await fetchResumeById(params.id);
@@ -16,7 +18,7 @@ export default async function ResumeArticle({ params }) {
   });
 
   return (
-    <div className="flex items-start justify-center py-5 min-page-h">
+    <div className="flex items-start justify-center py-5 min-page-h gap-5">
       <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg whitespace-pre-wrap ">
         
         <h1>{resumeItem.vacancy} <span className="text-primary-500">От {resumeItem.salary}</span></h1>
@@ -32,19 +34,6 @@ export default async function ResumeArticle({ params }) {
             <p>{resumeItem.employment}</p>
             <p>{resumeItem.schedule}</p>
           </div>
-        </div>
-
-        
-        <div className="flex justify-center w-full h-60 bg-background">
-          {resumeItem.picture ?
-            <Image
-              src={resumeItem.picture}
-              width={400}
-              height={250}
-              alt={resumeItem.alt}
-              className="h-60 w-min"
-            />
-          : null}
         </div>
 
         <div className="bg-white">
@@ -101,6 +90,21 @@ export default async function ResumeArticle({ params }) {
 
         <p className="text-gray-400">Дата публикации: {formattedDate}</p>
       </main>
+      <aside className="flex justify-center p-2 rounded-md bg-white">
+
+        <div className="bg-slate-100 w-48 h-48">
+          {resumeItem.picture ? (
+            <Image
+              src={resumeItem.picture}
+              width={400}
+              height={250}
+              alt={resumeItem.alt}
+            />
+          ) : (
+            <UserIcon className='text-slate-300'/>
+          )}
+        </div>
+      </aside>
     </div>
   );
 }

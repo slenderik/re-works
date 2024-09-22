@@ -14,7 +14,6 @@ export default async function ResumePage({searchParams}) {
   const currentPage = Number(searchParams.page) || 1;
 
   const resumeCount = await fetchResumeCount(query);
-
   const totalPages = Math.ceil(resumeCount / ITEMS_PER_PAGE);
 
   return (

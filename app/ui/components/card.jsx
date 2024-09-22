@@ -18,7 +18,7 @@ export function NewsCard({
   });
 
   return (
-    <div className="w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
+    <div className="relative w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
       <div className="md:flex">
 
         <div className="md:shrink-0">
@@ -34,15 +34,15 @@ export function NewsCard({
         </div>
 
         <div className="p-5">
-          <div className="tracking-wide text-sm text-gray-400">
+          <div className="relative tracking-wide text-sm text-gray-400">
             {formattedDate}
           </div>
           <Link
             href={`/news/${id}`}
-            className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-            {title}
+            className="block mt-1 text-lg leading-tight font-medium text-black after:content-[''] after:absolute after:inset-0 hover:underline">
+            <h3>{title}</h3>
           </Link>
-          <p className="mt-2 text-slate-500 line-clamp-2">
+          <p className="relative mt-2 text-slate-500 line-clamp-2">
             {content}
           </p>
         </div>
@@ -70,18 +70,19 @@ export function ResumeCard({
     day: 'numeric',
   });
 
-  const formattedSalar = new Intl.NumberFormat('ru-RU').format(salary).replace(/\s/g, '.');
+  const formattedSalary = new Intl.NumberFormat('ru-RU').format(salary).replace(/\s/g, '.');
   return (
     <div className="relative w-full mx-auto p-5 bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
       {/* Header */}
-      <Link className="after:content-[''] after:inset-0 after:absolute" href={`/resume/${id}`}></Link>
 
-      <div className='relative text-xl font-semibold flex gap-2 py-2 items-baseline'>
-        <p>
-          {vacancy}
-        </p>
+      <div className='text-xl font-semibold flex gap-2 py-2 items-baseline'>
+        <Link className="after:content-[''] after:absolute after:inset-0 hover:underline" href={`/resume/${id}`}>
+          <p>
+            {vacancy}
+          </p>
+        </Link>
         <p className='text-primary-100 text-lg'>
-          {formattedSalar}
+          {formattedSalary}
         </p>
       </div>
 
