@@ -4,10 +4,6 @@
 
 
 @layer base {
-  .min-page-h {
-    min-height: calc(100dvh - 8rem);
-  }
-
   h1 {
     @apply font-bold;
     @apply text-3xl;
@@ -30,29 +26,29 @@
 }
 
 
+@layer components {
+  .min-page-h {
+    min-height: calc(100dvh - 8rem);
+  }
+}
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background: #ffffff;
+  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: #0a0a0a;
+    --foreground: #ededed;
   }
 }
 
 html,
 body {
+  font-family: var(--font-vk-sans-display), Helvetica, sans-serif;
   height: 100%;
   min-height: 100dvh;
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: var(--foreground);
+  background: var(--background);
 }
