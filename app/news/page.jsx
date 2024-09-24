@@ -1,0 +1,44 @@
+import Link from "next/link";
+import Search from "@/ui/shared/search";
+import Pagination from "@/ui/shared/pagination";
+import { NewsFeed } from "@/ui/shared/page-feed"
+import { ITEMS_PER_PAGE, fetchNewsCount } from "@/lib/data";;
+
+export const metadata  = {
+  title: "Новости",
+};
+
+export default async function NewsPage({searchParams}) {
+
+  const query = searchParams.query || "";
+  const currentPage = Number(searchParams.page) || 1;
+
+  const newsCount = await fetchNewsCount(query);
+  const totalPages = Math.ceil(newsCount / ITEMS_PER_PAGE);
+
+  return (
+    <div className="flex items-start justify-center p-5 min-page-h">
+      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg min-h-[calc(100dvh-23rem)]">
+
+        <div className="w-full flex flex-row justify-between">
+          <div className="flex flex-row gap-1 items-end">
+            <Link href="news/">
+              <h1>Новости</h1>
+            </Link>
+            <p className="text-gray-400 font-semibold">{newsCount}</p> 
+          </div>
+          <Search placeholder="Ищите по заголовоку словам или дате" />
+        </div>
+
+        <hr className="border-gray-200"/>
+
+        <NewsFeed query={query} currentPage={currentPage}/>
+
+        <div className="mt-5 flex w-full justify-center">
+          <Pagination totalPages={totalPages} />
+        </div>
+
+      </main>
+    </div>
+  );
+}

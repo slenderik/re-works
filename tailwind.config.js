@@ -8,8 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        primary: {
+          100: "#50CD89", // яркая версия цвета
+          500: "#008163", // Для логотипов, основой цвет
+        }, 
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      fontFamily: {
+        sans: ['var(--font-vk-sans-display)'],
       },
     },
   },
