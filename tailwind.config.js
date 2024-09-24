@@ -14,6 +14,7 @@ module.exports = {
         }, 
         background: "var(--background)",
         foreground: "var(--foreground)",
+        background: "#F5F8FA"
       },
       fontFamily: {
         sans: ['var(--font-vk-sans-display)'],

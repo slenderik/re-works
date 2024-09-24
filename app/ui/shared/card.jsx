@@ -232,7 +232,7 @@ export function VacancyMiniCard({
 }) {
   const formattedSalary = new Intl.NumberFormat('ru-RU').format(salary).replace(/\s/g, '.');
   return (
-    <div className="relative w-64 h-24 bg-white rounded-md overflow-hidden pl-9 pr-2">
+    <div className="relative w-64 h-24 bg-white rounded-md overflow-hidden pl-9 pr-2 shadow-sm hover:shadow-md hover:transition">
       <div className="h-full w-4 bg-primary-500 absolute left-0"></div>
       <Link className="after:content-[''] after:absolute after:inset-0 hover:underline" href={`/vacancy/${id}`}>
         <h3 className="line-clamp-1">{vacancy}</h3>

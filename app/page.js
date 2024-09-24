@@ -12,7 +12,7 @@ export default function Home() {
       <main className="flex flex-col h-fullpx-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 min-h-[calc(100dvh-23rem)]">
       
         {/* hero section */}
-        <section className="flex flex-col items-center justify-center w-full bg-background gap-7">
+        <section className="flex flex-col items-center justify-center w-full gap-7">
           <h1 className="text-6xl text-primary-500 pb-5">
             Найдите свою работу
           </h1>
