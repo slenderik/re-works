@@ -42,6 +42,6 @@ export default async function NewsArticle({ params }) {
 export async function generateStaticParams() {
   const news = await fetchNews();
   return news.map((newsItem) => ({
-    id: newsItem._id.toString(),
+    id: newsItem.id.toString(),
   }));
 }

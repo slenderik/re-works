@@ -81,22 +81,19 @@ export async function fetchNewsById(id) {
 
 export async function fetchNews(query = "") {
 
-  return [{vacancy: "123"}, {vacancy: "123"}]
-  // // Если есть запрос для фильтрации, используем его
-  // const filter = query ? { title: { $regex: query, $options: "i" } } : {};
-  // console.log("Fetching news")
-  // // Получаем все новости с фильтрацией, если есть
-  // const news = await db.collection("news").find(filter).toArray();
-  // console.log(news);
+  // Если есть запрос для фильтрации, используем его
+  const filter = query ? { title: { $regex: query, $options: "i" } } : {};
+  // Получаем все новости с фильтрацией, если есть
+  const news = await db.collection("news").find(filter).toArray();
 
-  // // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
-  // return news.map((newsItem) => ({
-  //   id: newsItem._id.toString(),
-  //   title: newsItem.title,
-  //   content: newsItem.content,
-  //   createDate: newsItem.publicDate,
-  //   picture: newsItem.image || null,
-  // }));
+  // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
+  return news.map((newsItem) => ({
+    id: newsItem._id.toString(),
+    title: newsItem.title,
+    content: newsItem.content,
+    createDate: newsItem.publicDate,
+    picture: newsItem.image || null,
+  }));
 }
 
 // /////////////////
