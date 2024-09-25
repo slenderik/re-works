@@ -1,5 +1,5 @@
 import { fetchTopVacancies } from '@/lib/data';
-import { VacancyMiniCard } from '@/ui/shared/card';
+import { VacancyMiniCard } from '@/app/ui/shared/card';
 
 
 export default async function TopVacancy () {
@@ -7,7 +7,7 @@ export default async function TopVacancy () {
 
   return (
     <div className='w-full'>
-      <div className='w-full flex gap-6 flex-wrap'>
+      <div className='w-full flex gap-y-3 flex-wrap justify-between'>
         {vacancies.map((vacancyItem) => (
           <VacancyMiniCard
             key={vacancyItem._id}

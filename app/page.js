@@ -1,5 +1,5 @@
 import Search from "@/ui/shared/search";
-// import NewsSlider from "@/ui/home/news-slider";
+import NewsSlider from "@/ui/home/news-slider";
 import TopVacancy from "@/ui/home/top-vacancy"; 
 import { fetchVacancyCount } from "@/lib/data";
 import { CreateResume } from "@/ui/shared/create-buttons";
@@ -29,10 +29,10 @@ export default function Home() {
           <TopVacancy />
         </section>
 
-        {/* <section>
+        <section>
           <h2>Новости портала</h2>
           <NewsSlider />
-        </section> */}
+        </section>
       </main>
     </div>
   );

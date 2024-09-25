@@ -64,10 +64,8 @@ export async function fetchNewsById(id) {
 
     if (!newsItem) return null;
 
-    return {
+    return {...newsItem,
       _id: newsItem._id.toString(),
-      title: newsItem.title,
-      content: newsItem.content,
       createDate: newsItem.publicDate,
       picture: newsItem.image || null,
     };
@@ -84,14 +82,15 @@ export async function fetchNews(query = "") {
   // Если есть запрос для фильтрации, используем его
   const filter = query ? { title: { $regex: query, $options: "i" } } : {};
   // Получаем все новости с фильтрацией, если есть
-  const news = await db.collection("news").find(filter).toArray();
+  const news = await db.collection("news")
+    .find(filter)
+    .sort({ publicDate: -1 })
+    .toArray();
 
   // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
   return news.map((newsItem) => ({
+    ...newsItem,
     id: newsItem._id.toString(),
-    title: newsItem.title,
-    content: newsItem.content,
-    createDate: newsItem.publicDate,
     picture: newsItem.image || null,
   }));
 }
@@ -236,10 +235,8 @@ export async function fetchResumes(query = "") {
 
   // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
   return news.map((newsItem) => ({
-    _id: newsItem._id.toString(),
-    title: newsItem.title,
-    content: newsItem.content,
-    createDate: newsItem.createDate,
+    ...newsItem,
+    id: newsItem._id.toString(),
     picture: newsItem.picture || null,
   }));
 }

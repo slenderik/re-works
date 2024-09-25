@@ -1,69 +1,63 @@
-"use client"
+"use client";
 
+import React, { useEffect, useState } from 'react';
+import { NewsMiniCard } from '@/app/ui/shared/card';
+import { useRouter } from 'next/navigation';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-import React from 'react';
-import { useEffect, useState } from 'react';
-import { NewsMiniCard } from '@/ui/shared/card';
-import { Grid, Pagination } from 'swiper/modules';
+import 'swiper/css/navigation';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { getMiniNews } from '@/ui/home/mini-news';
-import { fetchNews } from '@/lib/data';
+import { Grid, Pagination, Navigation } from 'swiper/modules';
 
-
-
-const styles = "text-center text-[18px] bg-white h-[calc((100%-30px)/2)] !important flex justify-center items-center";
-
-export default function NewsSlider() {
-  const [news, setNews] = React.useState([]);
-  // Используем useSWR для получения данных
-  // const { data: news, error } = useSWR("/api/news/", fetcher);
-
-  // // Проверка данных, что приходит из API
-  // console.log("News data:", news);
-
-  // // Обработка ошибок
-  // if (error) return <div>Failed to load news.</div>;
-  // // Показ загрузки, пока данные не пришли
-  // if (!news) return <div>Loading...</div>;
-
-  // // Проверяем, является ли `news` массивом
-  // if (!Array.isArray(news)) {
-  //   return <div>Data format is incorrect. Expected an array.</div>;
-  // }
+const NewsSlider = () => {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    console.log("Mount news component")
-    const renderNews = async () => {
-      setNews(await fetchNews())
-    }
+    const fetchNewsData = async () => {
+      const response = await fetch('/api/news');
+      const data = await response.json();
+      setNews(data);
+      setLoading(false);
+    };
 
-    renderNews()
-  }, [])
+    fetchNewsData();
+  }, []);
 
-  return (
-    <>
-      {news.map((el) => <div key={el.vacancy}>{el.vacancy}</div>)}
-    </>
-    // <>
-    //   <Swiper
-    //     slidesPerView={3}
-    //     grid={{
-    //       rows: 2,
-    //     }}
-    //     spaceBetween={30}
-    //     pagination={{
-    //       clickable: true,
-    //     }}
-    //     modules={[Grid, Pagination]}
-    //     className="w-full h-40"
-    //   >
-    //     <SwiperSlide className={styles}>
-    //       {news.map((el) => <div>{el.vacancy}</div>)}
-    //       {/* <getMiniNews /> */}
-    //     </SwiperSlide>
-    //   </Swiper>
-    // </>
-  );
+  const handleNavigation = (id) => {
+    router.push(`/news/${id}`);
+};
+
+if (loading) {
+  return <div>Loading...</div>;
 }
+
+return (
+  <div className='w-full h-80'>
+    <Swiper
+      slidesPerView={2}
+      grid={{ rows: 2 }}
+      spaceBetween={30}
+      navigation={true}
+      modules={[Grid, Pagination, Navigation]}
+      className="w-full h-full mx-auto"
+    >
+      {news.map((newsItem) => (
+        <SwiperSlide key={newsItem.id} className='h-[calc((100%-30px)/2)]'>
+          <NewsMiniCard
+            onClick={() => handleNavigation(newsItem.id)}
+            id={newsItem.id} 
+            title={newsItem.title}
+            content={newsItem.description ? newsItem.description : newsItem.content.substring(0, 100)}
+            date={newsItem.publicDate}
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
+);
+};
+
+export default NewsSlider;

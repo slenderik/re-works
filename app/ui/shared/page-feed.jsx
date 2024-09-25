@@ -2,7 +2,7 @@ import {
   NewsCard,
   ResumeCard,
   VacancyCard,
-} from '@/ui/shared/card';
+} from '@/app/ui/shared/card';
 import { EmptySearchPage } from '@/ui/shared/empty-page';
 import { fetchFilteredNews,  fetchFilteredResumes, fetchFilteredVacancies } from "@/lib/data";
 

@@ -175,24 +175,24 @@ export function VacancyCard({
 }
 
 
-export function NewsMiniCard (
+export function NewsMiniCard ({
   id,
-  title,
+  title = "No Title",
   content,
   picture,
   date,
+  onClick,
   alt=""
-) {
+}) {
   const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
     year: 'numeric',
     month: 'long',
     day: 'numeric',
   });
 
-  const styles = "text-center text-[18px] bg-white h-[calc((100%-30px)/2)] !important flex justify-center items-center";
   return (
-    <div className="relative w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:shadow-sm hover:transition">
-      <div className="md:flex">
+    <div onClick={onClick} className="px-6 py-4 bg-white rounded-xl shadow-md hover:shadow-lg hover:transition">
+      <div className="md:flex rounded-md">
 
         <div className="md:shrink-0">
           {picture ?
@@ -201,23 +201,15 @@ export function NewsMiniCard (
             width={400}
             height={250}
             alt={alt}
-            className="h-48 w-full object-cover md:max-h-52 md:w-48"
+            className="h-48 object-cover md:max-h-52 md:w-48"
           />
           : null}
         </div>
 
-        <div className="p-5">
-          <div className="relative tracking-wide text-sm text-gray-400">
-            {formattedDate}
-          </div>
-          <Link
-            href={`/news/${id}`}
-            className="block mt-1 text-lg leading-tight font-medium text-black after:content-[''] after:absolute after:inset-0 hover:underline">
-            <h3>{title}</h3>
-          </Link>
-          <p className="relative mt-2 text-slate-500 line-clamp-2">
-            {content}
-          </p>
+        <div className="">
+          <h3 className="line-clamp-1">{title}</h3>
+          <p className="mt-2 text-slate-500 text-base line-clamp-2">{content}</p>
+          <p className="tracking-wide text-sm text-gray-400">{formattedDate}</p>
         </div>
       </div>
     </div>
