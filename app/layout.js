@@ -77,7 +77,7 @@ export default function RootLayout({ children }) {
         className={`${vkSansDisplay.variable} antialiased`}
       >
         <Header />
-        {children}
+        	{children}
         <Footer />
       </body>
     </html>
