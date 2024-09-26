@@ -11,6 +11,7 @@ module.exports = {
         primary: {
           100: "#50CD89", // яркая версия цвета
           500: "#008163", // Для логотипов, основой цвет
+          600: "#007B5F",
         }, 
         background: "var(--background)",
         foreground: "var(--foreground)",

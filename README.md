@@ -1,3 +1,6 @@
+# Re-Works
+Web application for job search for students.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Learn More
@@ -14,8 +17,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Project knowledge
 
-[`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
 This project was initialized from a [Next.js Starter](https://nextjs.org/), and contains the following changes:
 1. The `jsconfig.json` was updated to point the `@` alias to `./`
-2. Inline styles from Tailwind 
+2. Inline styles from Tailwind
+3. ui/templates used as universal blocks
+4. Using App Router
+5. [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.

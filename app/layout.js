@@ -2,6 +2,7 @@ import "@/app/styles/globals.css";
 import localFont from "next/font/local";
 import Header from "@/ui/shared/header";
 import Footer from "@/ui/shared/footer";
+import CookieConsent from "@/ui/shared/cookie-consent"
 
 
 const vkSansDisplay = localFont({
@@ -74,11 +75,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="ru">
       <body
-        className={`${vkSansDisplay.variable} antialiased`}
+        className={`relative ${vkSansDisplay.variable} antialiased`}
       >
         <Header />
         	{children}
         <Footer />
+        <CookieConsent />
       </body>
     </html>
   );
