@@ -5,7 +5,7 @@ export const metadata  = {
   title: "Пользовательское соглашение",
 };
 
-export default function UserAgreementPage () {
+export default function TermOfServicePage () {
   return (
     <WrapperTemplate>
       <MainTemplate>
