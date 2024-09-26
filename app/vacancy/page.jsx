@@ -1,8 +1,10 @@
 import Link from "next/link";
 import Search from "@/ui/shared/search";
 import Pagination from "@/ui/shared/pagination";
-import { VacancyFeed } from "@/ui/shared/page-feed"
-import { ITEMS_PER_PAGE, fetchVacancyCount } from "@/lib/data";;
+import { VacancyFeed } from "@/ui/shared/page-feed";
+import { ITEMS_PER_PAGE, fetchVacancyCount } from "@/lib/data";
+import MainTemplate from "@/ui/templates/main-template";
+import WrapperTemplate from "@/ui/templates/wrapper-template";
 
 export const metadata  = {
   title: "Вакансии",
@@ -17,8 +19,8 @@ export default async function VacancyPage({searchParams}) {
   const totalPages = Math.ceil(vacancyCount / ITEMS_PER_PAGE);
 
   return (
-    <div className="flex items-start justify-center p-5 min-page-h">
-      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg min-h-[calc(100dvh-23rem)]">
+    <WrapperTemplate>
+      <MainTemplate>
 
         <div className="w-full flex flex-row justify-between">
           <div className="flex flex-row gap-1 items-end">
@@ -38,7 +40,7 @@ export default async function VacancyPage({searchParams}) {
           <Pagination totalPages={totalPages} />
         </div>
 
-      </main>
-    </div>
+      </MainTemplate>
+    </WrapperTemplate>
   );
 }

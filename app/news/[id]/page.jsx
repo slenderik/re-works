@@ -17,7 +17,7 @@ export default async function NewsArticle({ params }) {
 
   return (
     <div className="flex items-start justify-center py-5 min-page-h">
-      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg whitespace-pre-wrap ">
+      <main className="flex flex-col h-full bg-white rounded-md px-5 py-6 gap-3 w-10/12 md:w-3/4 lg:w-1/2 shadow-lg whitespace-pre-wrap">
         
         <div className="flex justify-center w-full h-60 bg-background">
           {newItems.picture ?
