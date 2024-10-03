@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import NavLinks from '@/ui/shared/nav-links';
+import { NavLinks }  from '@/ui/shared/links';
 import ReworkLogo from '@/ui/shared/rework-logo';
 import { useState } from 'react';
 
@@ -68,7 +68,6 @@ export default function Header() {
       >
         <NavLinks />
       </div>
-      {/* </div> */}
     </header>
   );
 }
