@@ -2,9 +2,10 @@ import {
   NewsCard,
   ResumeCard,
   VacancyCard,
+  CourseCard,
 } from '@/app/ui/shared/card';
 import { EmptySearchPage } from '@/ui/shared/empty-page';
-import { fetchFilteredNews,  fetchFilteredResumes, fetchFilteredVacancies } from "@/lib/data";
+import { fetchFilteredNews,  fetchFilteredResumes, fetchFilteredVacancies, fetchFilteredCourses} from "@/lib/data";
 
 export async function NewsFeed({query, currentPage}) {
   const news = await fetchFilteredNews(query, currentPage);
@@ -78,6 +79,30 @@ export async function VacancyFeed({query, currentPage}) {
             profile={resumeItem.companyProfile}
             address={resumeItem.actualAddress}
             date={resumeItem.createdAt}
+          />
+        ))
+      )}
+    </>
+  );
+}
+
+export async function CoursesFeed({query, currentPage}) {  
+  const courses = await fetchFilteredCourses(query, currentPage);
+
+  return (
+    <>
+      {courses.length === 0? (
+        <EmptySearchPage />
+      ) : (
+        courses.map((courseItem) => (
+          <CourseCard
+            key={courseItem._id}
+            id={courseItem._id}
+            title={courseItem.title}
+            description={courseItem.description}
+            content={courseItem.content}
+            picture={courseItem.image}
+            date={courseItem.publicDate}
           />
         ))
       )}

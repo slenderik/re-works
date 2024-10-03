@@ -400,3 +400,98 @@ export async function fetchTopVacancies() {
     throw new Error("Failed to fetch top vacancies.");
   }
 }
+
+// /////////////////
+// COURSES 
+// /////////////////
+
+export async function fetchCourseCount(query = "") {
+  const safeQuery = sanitizeQuery(query);
+  const regexQuery = new RegExp(safeQuery, "i");
+
+  try {
+    const newsCount = await db.collection("courses")
+      .countDocuments({
+        $or: [
+          { title: { $regex: regexQuery } },
+          { content: { $regex: regexQuery } },
+          { publicDate: { $regex: regexQuery } },
+        ],
+      })  
+      return newsCount || 0;
+
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch news data.");
+  }
+}
+
+export async function fetchFilteredCourses(query = "", offset = 1) {
+  offset = (offset - 1) * ITEMS_PER_PAGE;
+
+  // Экранируем обратный слеш и другие специальные символы
+  const safeQuery = sanitizeQuery(query);
+
+  const regexQuery = new RegExp(safeQuery, "i");
+
+  try {
+    const courses = await db.collection("courses")
+      .find({
+        $or: [
+          { title: { $regex: regexQuery } },
+          { content: { $regex: regexQuery } },
+          { publicDate: { $regex: regexQuery } },
+        ],
+      })
+      .sort({ publicDate: -1 })  // -1 для убывающего порядка, 1 для возрастающего
+      .skip(offset)
+      .limit(ITEMS_PER_PAGE)
+      .toArray();
+
+    return courses;
+
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch invoices.");
+  }
+}
+
+
+export async function fetchCourseById(id) {
+
+  try {
+    const course = await db.collection("courses")
+      .findOne({ _id: id });
+
+    if (!course) return null;
+
+    return {...course,
+      _id: course._id.toString(),
+      createDate: course.publicDate,
+      picture: course.image || null,
+    };
+
+  } catch (error) {
+    console.error("Database Error:", error);
+    throw new Error("Failed to fetch new by id.");
+  }
+}
+
+
+export async function fetchCourses(query = "") {
+
+  // Если есть запрос для фильтрации, используем его
+  const filter = query ? { title: { $regex: query, $options: "i" } } : {};
+  // Получаем все новости с фильтрацией, если есть
+  const courses = await db.collection("courses")
+    .find(filter)
+    .sort({ publicDate: -1 })
+    .toArray();
+
+  // Преобразуем каждый документ в объект, чтобы можно было вернуть в качестве пропса
+  return courses.map((coursesItem) => ({
+    ...coursesItem,
+    id: coursesItem._id.toString(),
+    picture: coursesItem.image || null,
+  }));
+}

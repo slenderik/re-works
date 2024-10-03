@@ -174,14 +174,12 @@ export function VacancyCard({
   );
 }
 
-
-export function NewsMiniCard ({
+export function CourseCard({
   id,
-  title = "No Title",
+  title,
   content,
   picture,
   date,
-  onClick,
   alt=""
 }) {
   const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
@@ -191,7 +189,56 @@ export function NewsMiniCard ({
   });
 
   return (
-    <div onClick={onClick} className="px-6 py-4 bg-white rounded-xl shadow-md hover:shadow-lg hover:transition">
+    <div className="relative w-full mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-h-52 hover:scale-105 hover:transition">
+      <div className="md:flex">
+
+        <div className="md:shrink-0">
+          {picture ?
+          <Image
+            src={picture}
+            width={400}
+            height={250}
+            alt={alt}
+            className="h-48 w-full object-cover md:max-h-52 md:w-48"
+          />
+          : null}
+        </div>
+
+        <div className="p-5">
+          <div className="relative tracking-wide text-sm text-gray-400">
+            {formattedDate}
+          </div>
+          <Link
+            href={`/course/${id}`}
+            className="block mt-1 text-lg leading-tight font-medium text-black after:content-[''] after:absolute after:inset-0 hover:underline">
+            <h3>{title}</h3>
+          </Link>
+          <p className="relative mt-2 text-slate-500 line-clamp-2">
+            {content}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+export function NewsMiniCard ({
+  id,
+  title = "No Title",
+  content,
+  picture,
+  date,
+  alt=""
+}) {
+  const formattedDate = new Date(date).toLocaleDateString('ru-RU', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+
+  return (
+    <div className="px-6 py-4 bg-white rounded-xl shadow-md hover:shadow-lg hover:transition">
       <div className="md:flex rounded-md">
 
         <div className="md:shrink-0">
@@ -224,7 +271,7 @@ export function VacancyMiniCard({
 }) {
   const formattedSalary = new Intl.NumberFormat('ru-RU').format(salary).replace(/\s/g, '.');
   return (
-    <div className="relative w-64 h-24 bg-white rounded-md overflow-hidden pl-9 pr-2 shadow-sm hover:shadow-md hover:transition">
+    <div className="relative h-24 w-full md:min-w-40 max-w-80 bg-white rounded-md overflow-hidden pl-6 pr-2 shadow-sm hover:shadow-md hover:transition">
       <div className="h-full w-4 bg-primary-500 absolute left-0"></div>
       <Link className="after:content-[''] after:absolute after:inset-0 hover:underline" href={`/vacancy/${id}`}>
         <h3 className="line-clamp-1">{vacancy}</h3>
