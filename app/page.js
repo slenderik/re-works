@@ -1,5 +1,5 @@
 import Search from "@/ui/shared/search";
-import NewsSlider from "@/ui/home/news-slider";
+import NewsSlider from "@/app/ui/home/slider-news";
 import TopVacancy from "@/ui/home/top-vacancy"; 
 import { fetchVacancyCount } from "@/lib/data";
 import { CreateResume } from "@/ui/shared/create-buttons";
@@ -20,12 +20,11 @@ export default function Home() {
 
           <Search className="w-full" placeholder={"Работа, зарплата, удобный график"}/>
           <CreateResume />
-
         </section>
 
         {/* top 50 job offers */}
         <section>
-        <h2>Топовые вакансии</h2>
+          <h2>Топовые вакансии</h2>
           <TopVacancy />
         </section>
 
