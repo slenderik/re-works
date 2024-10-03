@@ -1,9 +1,8 @@
-import Link from "next/link";
-import Search from "@/ui/shared/search";
 import Pagination from "@/ui/shared/pagination";
 import { ResumeFeed } from "@/ui/shared/page-feed";
 import { ITEMS_PER_PAGE, fetchResumeCount } from "@/lib/data";
 import MainTemplate from "@/ui/templates/main-template";
+import { SearchPageHeader } from "@/ui/shared/PageHeaders";
 import WrapperTemplate from "@/ui/templates/wrapper-template";
 
 
@@ -22,18 +21,12 @@ export default async function ResumePage({searchParams}) {
   return (
     <WrapperTemplate>
       <MainTemplate>
-        <div className="w-full flex flex-row justify-between">
-          <div className="flex flex-row gap-1 items-baseline">
-            <Link href="resume/">
-              <h1>Резюме</h1>
-            </Link>
-            <p className="text-gray-400 font-semibold">{resumeCount}</p>
-          </div>
-
-          <Search placeholder="Ищите по професии" />
-        </div>
-
-        <hr className="border-gray-200"/>
+        <SearchPageHeader
+					title="Резюме"
+          href="resume/"
+					titleItemsCount={resumeCount}
+          SearchPlaceholder="Ищите по професии"
+				/>
 
         <ResumeFeed query={query} currentPage={currentPage}/>
 
