@@ -23,7 +23,7 @@ export default async function NewsPage({searchParams}) {
       <MainTemplate>
 
         <div className="w-full flex flex-row justify-between">
-          <div className="flex flex-row gap-1 items-end">
+          <div className="flex flex-row gap-1 items-baseline">
             <Link href="news/">
               <h1>Новости</h1>
             </Link>

@@ -23,7 +23,7 @@ export default async function ResumePage({searchParams}) {
     <WrapperTemplate>
       <MainTemplate>
         <div className="w-full flex flex-row justify-between">
-          <div className="flex flex-row gap-1 items-end">
+          <div className="flex flex-row gap-1 items-baseline">
             <Link href="resume/">
               <h1>Резюме</h1>
             </Link>
