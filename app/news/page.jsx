@@ -1,7 +1,7 @@
 import Pagination from "@/ui/shared/pagination";
 import { NewsFeed } from "@/ui/shared/page-feed";
 import MainTemplate from "@/ui/templates/main-template";
-import { SearchPageHeader } from "@/ui/shared/PageHeaders";
+import { SearchPageHeader } from "@/app/ui/shared/page-headers";
 import { ITEMS_PER_PAGE, fetchNewsCount } from "@/lib/data";
 import WrapperTemplate from "@/ui/templates/wrapper-template";
 
