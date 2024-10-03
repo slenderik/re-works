@@ -70,8 +70,6 @@ return (
         />
       ))}
     </div>
-
-    <div className='absolute inset-y-0 right-0 w-1/2 z-20 bg-gradient-to-l from-background/80 to-transparent pointer-events-none'></div>
   </div>
 );};
 
