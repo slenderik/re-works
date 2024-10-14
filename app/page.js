@@ -4,6 +4,7 @@ import TopVacancy from "@/ui/home/top-vacancy";
 import { fetchVacancyCount } from "@/lib/data";
 import { CreateResume } from "@/ui/shared/create-buttons";
 import WrapperTemplate from "@/ui/templates/wrapper-template";
+import BigSearch from "@/ui/home/big-search"
 
 export default function Home() {
   const vacancyCount = fetchVacancyCount();
@@ -17,8 +18,7 @@ export default function Home() {
           <h1 className="text-6xl text-primary-500 pb-5">Найдите свою работу</h1>
           <p>{vacancyCount} вакансий уже на портале и каждый год пополняем надёжными работодателями</p>
 
-          <Search className="w-full" placeholder={"Работа, зарплата, удобный график"}/>
-          <CreateResume />
+          <BigSearch placeholder={"Ищите по специальности, зарплате или графику"}/>
         </section>
 
         {/* top 50 job offers */}
