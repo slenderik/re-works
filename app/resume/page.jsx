@@ -2,8 +2,8 @@ import Pagination from "@/ui/shared/pagination";
 import { ResumeFeed } from "@/ui/shared/page-feed";
 import { ITEMS_PER_PAGE, fetchResumeCount } from "@/lib/data";
 import MainTemplate from "@/ui/templates/main-template";
-import { SearchPageHeader } from "@/app/ui/shared/page-headers";
 import WrapperTemplate from "@/ui/templates/wrapper-template";
+import { SearchPageHeader } from "@/app/ui/shared/page-headers";
 
 
 export const metadata  = {

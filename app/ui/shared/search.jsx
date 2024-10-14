@@ -23,7 +23,7 @@ export default function Search({placeholder}) {
   return (
     <div className={`relative flex`}>
       <label htmlFor="search" className="sr-only">
-        Найти
+        Поиск
       </label>
       <input
         id="search"

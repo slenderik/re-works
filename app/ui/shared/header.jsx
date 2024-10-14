@@ -56,8 +56,8 @@ export default function Header() {
       {/* Заднее затемнение */}
       <div
         className={`${
-          isOpen ? 'flex' : 'hidden'
-        } w-full h-full bg-black opacity-60 absolute `}
+          isOpen ? 'block' : 'hidden'
+        } w-full h-full bg-black opacity-60 absolute`}
       ></div>
       
       {/* Сама менюшка с ссылками */}

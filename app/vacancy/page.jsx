@@ -21,7 +21,7 @@ export default async function VacancyPage({searchParams}) {
     <WrapperTemplate>
       <MainTemplate>
         <SearchPageHeader
-					title="Курсы"
+					title="Вакансии"
           href="vacancy/"
 					titleItemsCount={vacancyCount}
 				/>
