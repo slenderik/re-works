@@ -1,9 +1,8 @@
-import Search from "@/ui/shared/search";
-import NewsSlider from "@/app/ui/home/slider-news";
+import BigSearch from "@/ui/home/big-search"
 import TopVacancy from "@/ui/home/top-vacancy"; 
 import { fetchVacancyCount } from "@/lib/data";
+import NewsSlider from "@/app/ui/home/slider-news";
 import WrapperTemplate from "@/ui/templates/wrapper-template";
-import BigSearch from "@/ui/home/big-search"
 
 export default function Home() {
   const vacancyCount = fetchVacancyCount();
