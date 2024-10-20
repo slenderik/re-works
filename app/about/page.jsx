@@ -9,17 +9,13 @@ export default function EmployersPage () {
 	return (
     <WrapperTemplate>
       <MainTemplate>
-        <h1>Сайт ReWork принадледжил БПОУ «КИТЭК»</h1>
-
-				<h2>Реквизиты для связи</h2>
-				<address>
-					<p>Адрес: ул. 27-я Северная, 69</p>
-					<p>Эл. Почта: <a href="mailto:tradeconomy@mail.ru">tradeconomy@mail.ru</a></p>
-					<p>Телефон: <a href="tel:68-07-73"> 68-07-73</a></p>
-				</address>
-
-        <p>Бюджетное профессиональное образовательное учреждение Омской области «Колледж инновационных технологий, экономики и коммерции».</p>
-
+	<h1>Связаться с нами</h1>
+	<address>
+		<a href="mailto:tradeconomy@mail.ru">tradeconomy@mail.ru</a>
+		<p>БПОУ «КИТЭК» (644116, г. Омск, ул. 27 Северная, дом 69)</p>
+		<p>Адрес: ул. 27-я Северная, 69</p>
+		<p>Телефон: <a href="tel:68-07-73"> 68-07-73</a></p>
+	</address>
       </MainTemplate>
     </WrapperTemplate>
 	);
